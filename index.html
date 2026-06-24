@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="School Management Dashboard - A professional admin portal for managing students, tracking payments, and importing/exporting records.">
+  <title>School Management Dashboard</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span class="logo-text">EduFee</span>
+        </div>
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close sidebar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item active">
+            <a href="#" class="nav-link" id="navDashboardLink">
+              <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="9"></rect>
+                <rect x="14" y="3" width="7" height="5"></rect>
+                <rect x="14" y="12" width="7" height="9"></rect>
+                <rect x="3" y="16" width="7" height="5"></rect>
+              </svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <span class="user-name">Admin Portal</span>
+            <span class="user-role">Super Administrator</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content Area -->
+    <main class="app-main">
+      
+      <!-- Top Navigation Bar -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Open sidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <h1 class="page-title">School Management Dashboard</h1>
+        </div>
+        
+        <div class="header-right">
+          <span class="current-date-time" id="currentDateTime">June 24, 2026</span>
+          <div class="header-actions">
+            <!-- Hidden inputs for CSV files -->
+            <input type="file" id="importCsvInput" accept=".csv" class="hidden-input">
+            
+            <button class="btn btn-secondary-outline" id="themeToggleBtn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+              <svg class="btn-icon theme-sun hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg class="btn-icon theme-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+            
+            <button class="btn btn-secondary-outline" id="importCsvBtn" title="Import from CSV">
+              <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <span>Import CSV</span>
+            </button>
+            <button class="btn btn-secondary-outline" id="exportCsvBtn" title="Export to CSV">
+              <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export CSV</span>
+            </button>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Dashboard Stats -->
+      <section class="stats-grid" aria-label="Dashboard Overview Statistics">
+        
+        <!-- Total Students -->
+        <div class="stat-card" id="statCardTotal">
+          <div class="stat-icon-wrapper blue">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Total Students</span>
+            <h2 class="stat-value" id="statTotalStudents">0</h2>
+          </div>
+        </div>
+        
+        <!-- Paid Students -->
+        <div class="stat-card" id="statCardPaid">
+          <div class="stat-icon-wrapper green">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Paid Students</span>
+            <h2 class="stat-value text-green" id="statPaidStudents">0</h2>
+          </div>
+        </div>
+        
+        <!-- Unpaid Students -->
+        <div class="stat-card" id="statCardUnpaid">
+          <div class="stat-icon-wrapper red">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Unpaid Students</span>
+            <h2 class="stat-value text-red" id="statUnpaidStudents">0</h2>
+          </div>
+        </div>
+        
+        <!-- Total Collected -->
+        <div class="stat-card" id="statCardCollected">
+          <div class="stat-icon-wrapper emerald">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Total Collected</span>
+            <h2 class="stat-value text-emerald" id="statTotalCollected">$0.00</h2>
+          </div>
+        </div>
+        
+        <!-- Total Pending -->
+        <div class="stat-card" id="statCardPending">
+          <div class="stat-icon-wrapper orange">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Total Pending</span>
+            <h2 class="stat-value text-orange" id="statTotalPending">$0.00</h2>
+          </div>
+        </div>
+        
+      </section>
+      
+      <!-- Management and Data Section -->
+      <section class="content-panel" aria-label="Student Fee Details">
+        <div class="panel-controls">
+          <div class="controls-left">
+            <!-- Search bar -->
+            <div class="search-box">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="studentSearchInput" placeholder="Search by name, class, roll number...">
+            </div>
+            
+            <!-- Filters -->
+            <div class="filter-group">
+              <select id="statusFilterSelect" aria-label="Filter by Status">
+                <option value="all">All Statuses</option>
+                <option value="paid">Paid</option>
+                <option value="unpaid">Unpaid</option>
+              </select>
+              
+              <select id="sortBySelect" aria-label="Sort by column">
+                <option value="nameAsc">Name (A-Z)</option>
+                <option value="nameDesc">Name (Z-A)</option>
+                <option value="dueDateAsc">Due Date (Earliest)</option>
+                <option value="dueDateDesc">Due Date (Latest)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="controls-right">
+            <button class="btn btn-primary" id="addStudentBtn">
+              <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Add Student</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Table container -->
+        <div class="table-container">
+          <table class="student-table" id="studentTable">
+            <thead>
+              <tr>
+                <th scope="col">Student Name</th>
+                <th scope="col">Class & Roll</th>
+                <th scope="col">Parent & Contact</th>
+                <th scope="col">Fee Amount</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody">
+              <!-- Dynamically populated rows go here -->
+            </tbody>
+          </table>
+          
+          <!-- Empty state screen -->
+          <div class="empty-state hidden" id="emptyState">
+            <div class="empty-state-illustration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+                <line x1="9" y1="11" x2="15" y2="11"></line>
+                <line x1="9" y1="18" x2="11" y2="18"></line>
+              </svg>
+            </div>
+            <h3>No student records found</h3>
+            <p>Get started by clicking the "Add Student" button above or import data from a CSV file.</p>
+          </div>
+          
+          <!-- Table Loading Spinner -->
+          <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <span class="loading-text">Processing records...</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <!-- Add/Edit Student Modal Dialog -->
+  <div class="modal-backdrop hidden" id="studentModal">
+    <div class="modal-container" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Add Student Record</h3>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      
+      <form id="studentForm" novalidate>
+        <!-- Keep track of edit ID -->
+        <input type="hidden" id="editStudentId" value="">
+        
+        <div class="modal-body">
+          <div class="form-grid">
+            
+            <!-- Student Name -->
+            <div class="form-field full-width">
+              <label for="studentNameInput">Student Name <span class="required">*</span></label>
+              <input type="text" id="studentNameInput" required placeholder="John Doe">
+              <span class="error-msg" id="nameError">Name is required</span>
+            </div>
+            
+            <!-- Class -->
+            <div class="form-field">
+              <label for="studentClassInput">Class <span class="required">*</span></label>
+              <input type="text" id="studentClassInput" required placeholder="Grade 10">
+              <span class="error-msg" id="classError">Class is required</span>
+            </div>
+            
+            <!-- Roll Number -->
+            <div class="form-field">
+              <label for="studentRollInput">Roll Number <span class="required">*</span></label>
+              <input type="number" id="studentRollInput" required min="1" placeholder="101">
+              <span class="error-msg" id="rollError">A unique roll number is required</span>
+            </div>
+            
+            <!-- Parent Name -->
+            <div class="form-field">
+              <label for="parentNameInput">Parent Name <span class="required">*</span></label>
+              <input type="text" id="parentNameInput" required placeholder="Robert Doe">
+              <span class="error-msg" id="parentError">Parent's name is required</span>
+            </div>
+            
+            <!-- Mobile Number -->
+            <div class="form-field">
+              <label for="mobileNumberInput">Mobile Number <span class="required">*</span></label>
+              <input type="tel" id="mobileNumberInput" required placeholder="10-digit number">
+              <span class="error-msg" id="mobileError">Enter a valid 10-digit mobile number</span>
+            </div>
+            
+            <!-- Fee Amount -->
+            <div class="form-field">
+              <label for="feeAmountInput">Fee Amount <span class="required">*</span></label>
+              <div class="amount-input-wrapper">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="feeAmountInput" required min="0" step="0.01" placeholder="1500">
+              </div>
+              <span class="error-msg" id="feeError">Enter a valid fee amount</span>
+            </div>
+            
+            <!-- Due Date -->
+            <div class="form-field">
+              <label for="dueDateInput">Due Date <span class="required">*</span></label>
+              <input type="date" id="dueDateInput" required>
+              <span class="error-msg" id="dateError">Due date is required</span>
+            </div>
+            
+            <!-- Status -->
+            <div class="form-field full-width">
+              <label for="feeStatusSelect">Fee Status <span class="required">*</span></label>
+              <select id="feeStatusSelect" required>
+                <option value="unpaid">Unpaid / Pending</option>
+                <option value="paid">Paid / Cleared</option>
+              </select>
+              <span class="error-msg" id="statusError">Status is required</span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary-outline" id="modalCancelBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="modalSubmitBtn">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Delete Confirmation Dialog Modal -->
+  <div class="modal-backdrop hidden" id="deleteConfirmModal">
+    <div class="modal-container modal-small" role="dialog" aria-labelledby="deleteModalTitle" aria-modal="true">
+      <div class="modal-header header-danger">
+        <h3 class="modal-title" id="deleteModalTitle">Delete Student Record</h3>
+        <button class="modal-close-btn" id="deleteModalCloseBtn" aria-label="Close modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      
+      <div class="modal-body text-center">
+        <div class="warning-icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <h4>Are you sure?</h4>
+        <p>You are about to delete <strong id="deleteStudentName">this student</strong>'s fee record. This action is irreversible and will remove all student data permanently.</p>
+      </div>
+      
+      <div class="modal-footer justify-center">
+        <button type="button" class="btn btn-secondary-outline" id="deleteCancelBtn">No, Keep It</button>
+        <button type="button" class="btn btn-danger" id="deleteConfirmBtn">Yes, Delete Record</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Toasts Notifications Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+  
+  <!-- Application Main JS -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
